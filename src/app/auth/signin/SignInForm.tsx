@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 import styles from '@/app/auth/signin/SignInForm.module.scss'
 import TextForm from '@/app/components/forms/TextForm';
 import AppButton from '@/app/components/buttons/AppButton';
@@ -13,7 +14,7 @@ export default function SingInForm() {
   const [errorMessageForEmail, setErrorMessageForEmail] = useState('');
   const [errorMessageForPassword, setErrorMessageForPassword] = useState('');
 
-  const signin = () => {
+  const signin = async () => {
     let hasError = false;
     setErrorMessageForEmail('');
     setErrorMessageForPassword('');
@@ -26,7 +27,16 @@ export default function SingInForm() {
       hasError = true;
     }
     if (hasError) return;
-    authSignin(email, password);
+
+    try {
+      await authSignin(email, password);
+      const router = useRouter();
+      router.push('/');
+    } catch (e) {
+      if (e instanceof Error) {
+        alert(e.message);
+      }
+    }
   }
 
   return (

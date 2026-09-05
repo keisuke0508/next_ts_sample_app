@@ -8,3 +8,9 @@ export async function findUserByEmail(email: string): Promise<User | null> {
     }
   });
 }
+
+export async function createUser(email: string, password: string, name: string) {
+  await prisma.user.create({
+    data: { email, password, name }
+  });
+}
