@@ -11,12 +11,15 @@ export default function AppHeader() {
   const onClickMenuButton = () => {
     setMenuAppeared(!menuAppeared);
   };
+  const onCloseMenu = () => {
+    setMenuAppeared(false);
+  }
 
   return (
     <div className={styles.header}>
       <LinkButton text='ログイン' href='/auth/signin' />
       <MenuButton onClick={onClickMenuButton} />
-      <GlobalMenu appeared={menuAppeared} />
+      <GlobalMenu appeared={menuAppeared} onClose={onCloseMenu} />
     </div>
   );
 }

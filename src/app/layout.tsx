@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import './globals.css';
+import '@/extensions/Number'
 import styles from '@/app/layout.module.scss';
-import AppHeader from "@/app/components/layouts/AppHeader";
-import AppFooter from "@/app/components/layouts/AppFooter";
+import AppHeader from '@/app/components/layouts/AppHeader';
+import AppFooter from '@/app/components/layouts/AppFooter';
 
 export const metadata: Metadata = {
   title: "Sample Next App",
