@@ -1,14 +1,15 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import styles from '@/app/auth/signin/SignInForm.module.scss'
 import TextForm from '@/app/components/forms/TextForm';
 import AppButton from '@/app/components/buttons/AppButton';
 import { AppButtonColorType } from '@/types/AppButtonColorType';
-import { authSignin } from '@/actions/auth';
+import { authFetchCurrentUser, authSignin } from '@/actions/auth';
 
 export default function SingInForm() {
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessageForEmail, setErrorMessageForEmail] = useState('');
@@ -30,7 +31,7 @@ export default function SingInForm() {
 
     try {
       await authSignin(email, password);
-      const router = useRouter();
+      const user = await authFetchCurrentUser();
       router.push('/');
     } catch (e) {
       if (e instanceof Error) {
@@ -42,7 +43,7 @@ export default function SingInForm() {
   return (
     <form className={styles.form}>
       <TextForm title='メールアドレス' value={email} errorMessage={errorMessageForEmail} onBlur={setEmail} />
-      <TextForm title='パスワード' value={password} errorMessage={errorMessageForPassword} onBlur={setPassword} />
+      <TextForm title='パスワード' value={password} type='password' errorMessage={errorMessageForPassword} onBlur={setPassword} />
       <AppButton text="ログイン" colorType={AppButtonColorType.Blue} className={styles.button} onClick={signin} />
     </form>
   )

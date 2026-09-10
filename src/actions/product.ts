@@ -8,7 +8,7 @@ export type FetchProductsParams = {
   count: number;
 }
 
-export async function fetchProducts({ page, count }: FetchProductsParams): Promise<ProductsResponse> {
+export async function productFetchProducts({ page, count }: FetchProductsParams): Promise<ProductsResponse> {
   const products = await findProducts({ page, count });
   const countAll = await countProducts();
   const pageAll = Math.ceil(countAll / count);

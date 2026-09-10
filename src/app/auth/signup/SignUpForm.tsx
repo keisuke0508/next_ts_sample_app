@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import styles from '@/app/auth/signup/SignUpForm.module.scss'
 import TextForm from '@/app/components/forms/TextForm';
 import AppButton from '@/app/components/buttons/AppButton';
@@ -9,6 +9,7 @@ import { AppButtonColorType } from '@/types/AppButtonColorType';
 import { authSignup } from '@/actions/auth';
 
 export default function SignUpForm() {
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -48,7 +49,6 @@ export default function SignUpForm() {
 
     try {
       await authSignup(email, password, name);
-      const router = useRouter();
       router.push('/auth/signup/complete');
     } catch (e) {
       if (e instanceof Error) {
@@ -60,8 +60,8 @@ export default function SignUpForm() {
   return (
     <form className={styles.form}>
       <TextForm title='メールアドレス' value={email} errorMessage={errorMessageForEmail} onBlur={setEmail} />
-      <TextForm title='パスワード' value={password} errorMessage={errorMessageForPassword} onBlur={setPassword} />
-      <TextForm title='パスワード（確認）' value={confirmPassword} errorMessage={errorMessageForConfirmPassword} onBlur={setConfirmPassword} />
+      <TextForm title='パスワード' value={password} type='password' errorMessage={errorMessageForPassword} onBlur={setPassword} />
+      <TextForm title='パスワード（確認）' value={confirmPassword} type='password' errorMessage={errorMessageForConfirmPassword} onBlur={setConfirmPassword} />
       <TextForm title='名前（ニックネーム）' value={name} errorMessage={errorMessageForName} onBlur={setName} />
       <AppButton text='登録' colorType={AppButtonColorType.Blue} className={styles.button} onClick={signup} />
     </form>
