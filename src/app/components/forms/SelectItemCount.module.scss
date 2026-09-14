@@ -1,0 +1,14 @@
+.select {
+  background-color: $white;
+  color: $black;
+  height: 32px;
+  width: 56px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+}

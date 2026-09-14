@@ -10,14 +10,14 @@ export async function findSession(id: string): Promise<Session | null> {
   });
 }
 
-export async function createSession(userId: string, expiresAt: Date) {
+export async function createSession(userId: string, expiresAt: Date): Promise<string> {
   const session = await prisma.session.create({
     data: { userId, expiresAt },
   });
   return session.id;
 }
 
-export async function deleteSession(userId: string) {
+export async function deleteSession(userId: string): Promise<void> {
   prisma.session.deleteMany({
     where: {
       userId,

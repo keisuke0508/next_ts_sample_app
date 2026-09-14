@@ -17,4 +17,9 @@
     background: linear-gradient(135deg, #2196d3, #3b82f6);
     color: $white;
   }
+
+  &.red {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: $white;
+  }
 }

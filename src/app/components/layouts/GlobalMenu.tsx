@@ -10,7 +10,8 @@ type Props = {
 
 const menuLinkItems = [
   { key: 1, text: 'TOP', href: '/' },
-  { key: 2, text: '商品一覧', href: '/products' }
+  { key: 2, text: '商品一覧', href: '/products' },
+  { key: 3, text: 'カート', href: '/cart' },
 ];
 
 export default function GlobalMenu({ appeared, onClose }: Props) {
@@ -20,16 +21,15 @@ export default function GlobalMenu({ appeared, onClose }: Props) {
     onClose();
   }
   return (
-    <div className={`${styles.root} ${appeared ? styles.appeared : ''}`}>
-      <div className={`${styles.menu} ${appeared ? styles.appeared : ''}`}>
-        <ul>
-          {menuLinkItems.map(item => (
-            <li key={item.key} className={styles.listItem} onClick={() => onClickMenu(item.href)}>
-              {item.text}
-            </li>
-          ))}
-        </ul>
-      </div>
+    <div className={styles.root}>
+      <div className={`${styles.overlay} ${appeared ? styles.appeared : ''}`} />
+      <ul className={`${styles.menu} ${appeared ? styles.appeared : ''}`}>
+        {menuLinkItems.map(item => (
+          <li key={item.key} className={styles.listItem} onClick={() => onClickMenu(item.href)}>
+            {item.text}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

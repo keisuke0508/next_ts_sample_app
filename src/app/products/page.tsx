@@ -4,7 +4,9 @@ import ProductItem from '@/app/products/ProductItem';
 import { productFetchProducts } from '@/actions/product';
 
 export default async function ProductsPage() {
-  const { products } = await productFetchProducts({ page: 1, count: 251 });
+  const page = 1;
+  const count = 251;
+  const { products } = await productFetchProducts(page, count);
   return (
     <div>
       <PageTitle title='商品一覧' />

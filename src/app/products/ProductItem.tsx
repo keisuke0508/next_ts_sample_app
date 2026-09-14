@@ -8,9 +8,8 @@ type Props = {
 }
 
 export default function ProductItem({ product }: Props) {
-  const href = '/';
   return (
-    <Link href={href}>
+    <Link href={`/products/${product.id}`}>
       <Image src={product.imageUrl} alt={product.name} width={200} height={200} className={styles.image} />
       <p className={styles.productName}>{product.name}</p>
       <p className={styles.price}>{product.price.formatPrice()}</p>
