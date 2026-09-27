@@ -33,8 +33,19 @@ export async function fetchCartProducts({ userId }: FetchCartProduct): Promise<C
 }
 
 export async function createCartProduct({ userId, productId, count, price }: CreateCartProductProps): Promise<void> {
-  await prisma.cartProduct.create({
-    data: { userId, productId, count, price },
+  await prisma.cartProduct.upsert({
+    where: {
+      userId_productId: {
+        userId, productId,
+      },
+    },
+    create: { userId, productId, count, price },
+    update: {
+      count: {
+        increment: count,
+      },
+      price,
+    }
   });
 }
 
