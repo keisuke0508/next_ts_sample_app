@@ -30,8 +30,9 @@ export default function SingInForm() {
     if (hasError) return;
 
     try {
-      await authSignin(email, password);
-      const user = await authFetchCurrentUser();
+      const { message } = await authSignin(email, password);
+      await authFetchCurrentUser();
+      $toast.success(message);
       router.push('/');
     } catch (e) {
       if (e instanceof Error) {

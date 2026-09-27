@@ -6,7 +6,6 @@ import { cartDeleteCartProduct, cartUpdateCartProduct } from '@/actions/cart';
 import { AppButtonColorType } from '@/types/AppButtonColorType';
 import AppButton from '@/app/components/buttons/AppButton';
 import SelectItemCount from '@/app/components/forms/SelectItemCount';
-import { toast } from '@/lib/toast';
 
 type Props = {
   id: string;
@@ -18,7 +17,7 @@ export default function CartProductForm({ id, count }: Props) {
   const updateCartProductCount = async (newCount: number) => {
     try {
       const { message } = await cartUpdateCartProduct(id, newCount);
-      toast.success(message);
+      $toast.success(message);
     } catch (e) {
       if (e instanceof Error) {
         alert(e.message);
@@ -29,7 +28,7 @@ export default function CartProductForm({ id, count }: Props) {
     try {
       const { message } = await cartDeleteCartProduct(id);
       router.refresh();
-      toast.success(message);
+      $toast.success(message);
     } catch (e) {
       if (e instanceof Error) {
         alert(e.message);

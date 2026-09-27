@@ -16,7 +16,8 @@ export default function ProductForm({ productId, price }: Props) {
   const [count, setCount] = useState(1);
   const addToCart = async () => {
     try {
-      await cartCreateCartProduct(productId, count, price);
+      const { message } = await cartCreateCartProduct(productId, count, price);
+      $toast.success(message);
     } catch (e) {
       if (e instanceof Error) {
         alert(e.message);
