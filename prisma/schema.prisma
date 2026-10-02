@@ -37,6 +37,7 @@ model Product {
   createdAt   DateTime @default(now())
 
   cartProducts CartProduct[]
+  favoriteProducts FavoriteProduct[]
 }
 
 model CartProduct {
@@ -77,4 +78,17 @@ model Prefecture {
   name String @unique
 
   shippingAddresses ShippingAddress[]
+}
+
+model FavoriteProduct {
+  id        String   @id @default(uuid())
+  userId    String
+  productId String
+  createdAt DateTime @default(now())
+
+  product Product @relation(fields: [productId], references: [id])
+
+  @@unique([userId, productId])
+
+  @@index([userId, createdAt])
 }

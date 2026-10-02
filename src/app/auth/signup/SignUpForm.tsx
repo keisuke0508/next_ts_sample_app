@@ -51,7 +51,7 @@ export default function SignUpForm() {
       router.push('/auth/signup/complete');
     } catch (e) {
       if (e instanceof Error) {
-        alert(e.message);
+        $toast.error(e.message);
       }
     }
   }

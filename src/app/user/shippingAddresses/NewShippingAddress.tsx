@@ -85,7 +85,7 @@ export default function NewShippingAddress({ prefectures }: Props) {
       hideModal();
     } catch (e) {
       if (e instanceof Error) {
-        alert(e.message);
+        $toast.error(e.message);
       }
     }
   };

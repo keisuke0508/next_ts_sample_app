@@ -1,5 +1,5 @@
-import { Prefecuture } from '@/models/Prefecture';
+import { Prefecture } from '@/models/Prefecture';
 
 export type PrefecturesResponse = {
-  prefectures: Prefecuture[],
+  prefectures: Prefecture[],
 };

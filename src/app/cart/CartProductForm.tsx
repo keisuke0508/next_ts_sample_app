@@ -19,7 +19,7 @@ export default function CartProductForm({ id, count }: Props) {
       $toast.success(message);
     } catch (e) {
       if (e instanceof Error) {
-        alert(e.message);
+        $toast.error(e.message);
       }
     }
   };
@@ -30,7 +30,7 @@ export default function CartProductForm({ id, count }: Props) {
       $toast.success(message);
     } catch (e) {
       if (e instanceof Error) {
-        alert(e.message);
+        $toast.error(e.message);
       }
     }
   };

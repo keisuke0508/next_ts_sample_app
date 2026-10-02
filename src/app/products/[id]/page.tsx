@@ -3,6 +3,8 @@ import styles from '@/app/products/[id]/page.module.scss';
 import { productFetchProduct } from '@/actions/product';
 import PageTitle from '@/components/texts/PageTitle';
 import ProductForm from '@/app/products/[id]/ProductForm';
+import FavoriteProductButton from '@/app/products/[id]/FavoriteProductButton';
+import { userFetchFavoriteProduct } from '@/actions/user';
 
 type Props = {
   params: Promise<{
@@ -12,7 +14,10 @@ type Props = {
 
 export default async function ProductPage({ params }: Props) {
   const { id } = await params;
-  const { product } = await productFetchProduct(id);
+  const [{ product }, { favoriteProduct }] = await Promise.all([
+    productFetchProduct(id),
+    userFetchFavoriteProduct(id),
+  ]);
 
   return (
     <div className={styles.root}>
@@ -20,6 +25,7 @@ export default async function ProductPage({ params }: Props) {
         <Image src={product.imageUrl} alt={product.name} width={300} height={300} className={styles.image} />
         <div>
           <PageTitle title={product.name} />
+          <FavoriteProductButton productId={id} favoriteProductId={favoriteProduct?.id} />
           <p className={styles.description}>{product.description}</p>
           <p className={styles.types}>タイプ: {product.type1.pokemonTypeForJapanese()}{product.type2 ? ` / ${product.type2.pokemonTypeForJapanese()}` : ''}</p>
           <p className={styles.price}>{product.price.formatPrice()}</p>

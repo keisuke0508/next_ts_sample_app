@@ -14,7 +14,7 @@ export default function ShippingAddressItem({ shippingAddress }: Props) {
         <p className={styles.address}>{shippingAddress.city}{shippingAddress.address} {shippingAddress.buildingName}</p>
         <p className={styles.name}>{shippingAddress.name}</p>
       </div>
-      <DeleteShippingAddressButton shippingAddress={shippingAddress} />
+      <DeleteShippingAddressButton shippingAddressId={shippingAddress.id} />
     </div>
   );
 }

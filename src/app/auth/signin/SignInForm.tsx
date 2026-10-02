@@ -35,7 +35,7 @@ export default function SingInForm() {
       router.push('/');
     } catch (e) {
       if (e instanceof Error) {
-        alert(e.message);
+        $toast.error(e.message);
       }
     }
   }

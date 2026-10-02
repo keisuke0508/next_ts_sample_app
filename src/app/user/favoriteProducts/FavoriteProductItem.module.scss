@@ -1,0 +1,40 @@
+.root {
+  border: 1px solid $black;
+  border-radius: 8px;
+  padding: 8px 8px;
+  display: flex;
+  width: 100%;
+  max-width: 960px;
+}
+
+.image {
+  border: 1px solid $black;
+  border-radius: 8px;
+  margin-right: 8px;
+}
+
+.product {
+  flex-grow: 1;
+}
+
+.productName {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1;
+  color: $black;
+  margin-bottom: 8px;
+}
+
+.price {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1;
+  color: $red;
+}
+
+.formWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+}

@@ -19,7 +19,7 @@ export default function ProductForm({ productId, price }: Props) {
       $toast.success(message);
     } catch (e) {
       if (e instanceof Error) {
-        alert(e.message);
+        $toast.error(e.message);
       }
     }
   }

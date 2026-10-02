@@ -4,23 +4,22 @@ import { useRouter } from 'next/navigation';
 import { userDeleteShippingAddress } from '@/actions/user';
 import styles from '@/app/user/shippingAddresses/DeleteShippingAddressButton.module.scss';
 import AppButton, { AppButtonColorType } from '@/components/buttons/AppButton';
-import { ShippingAddress } from '@/models/ShippingAddress';
 
 type Props = {
-  shippingAddress: ShippingAddress;
+  shippingAddressId: string;
 };
 
-export default function DeleteShippingAddressButton({ shippingAddress }: Props) {
+export default function DeleteShippingAddressButton({ shippingAddressId }: Props) {
   const router = useRouter();
   
   const deleteShippingAddress = async () => {
     try {
-      await userDeleteShippingAddress(shippingAddress.id);
+      await userDeleteShippingAddress(shippingAddressId);
       $toast.success('お届け先を削除しました。');
       router.refresh();
     } catch (e) {
       if (e instanceof Error) {
-        alert(e.message);
+        $toast.error(e.message);
       }
     }
   };

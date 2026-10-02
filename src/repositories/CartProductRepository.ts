@@ -1,7 +1,7 @@
 import { prisma } from '@/lib/prisma';
 import { CartProduct } from '@/models/CartProduct';
 
-type FetchCartProduct = {
+type FetchCartProductProps = {
   userId: string;
 }
 
@@ -21,7 +21,7 @@ type DeleteCartProductProps = {
   id: string;
 }
 
-export async function fetchCartProducts({ userId }: FetchCartProduct): Promise<CartProduct[]> {
+export async function fetchCartProducts({ userId }: FetchCartProductProps): Promise<CartProduct[]> {
   return await prisma.cartProduct.findMany({
     where: {
       userId,
