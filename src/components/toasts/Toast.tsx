@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import styles from '@/app/components/toasts/Toast.module.scss';
+import styles from '@/components/toasts/Toast.module.scss';
 import { toastSubject } from '@/lib/toast';
 
 export default function Toast() {

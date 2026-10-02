@@ -1,6 +1,6 @@
 import styles from '@/app/auth/signup/complete/page.module.scss'
-import PageTitle from '@/app/components/texts/PageTitle';
-import LinkButton from '@/app/components/buttons/LinkButton';
+import PageTitle from '@/components/texts/PageTitle';
+import LinkButton from '@/components/buttons/LinkButton';
 
 export default function SignUpCompletePage() {
   return (

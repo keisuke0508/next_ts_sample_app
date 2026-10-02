@@ -3,9 +3,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from '@/app/auth/signup/SignUpForm.module.scss'
-import TextForm from '@/app/components/forms/TextForm';
-import AppButton from '@/app/components/buttons/AppButton';
-import { AppButtonColorType } from '@/types/AppButtonColorType';
+import TextForm from '@/components/forms/TextForm';
+import AppButton, { AppButtonColorType } from '@/components/buttons/AppButton';
 import { authSignup } from '@/actions/auth';
 
 export default function SignUpForm() {

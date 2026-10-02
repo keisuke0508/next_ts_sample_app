@@ -3,9 +3,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from '@/app/auth/signin/SignInForm.module.scss'
-import TextForm from '@/app/components/forms/TextForm';
-import AppButton from '@/app/components/buttons/AppButton';
-import { AppButtonColorType } from '@/types/AppButtonColorType';
+import TextForm from '@/components/forms/TextForm';
+import AppButton, { AppButtonColorType } from '@/components/buttons/AppButton';
 import { authFetchCurrentUser, authSignin } from '@/actions/auth';
 
 export default function SingInForm() {

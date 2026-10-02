@@ -3,10 +3,11 @@ import './globals.css';
 import '@/extensions/Number'
 import { authFetchCurrentUser } from '@/actions/auth'
 import styles from '@/app/layout.module.scss';
-import AppPlugin from '@/app/components/layouts/AppPlugin';
-import AppHeader from '@/app/components/layouts/AppHeader';
-import AppFooter from '@/app/components/layouts/AppFooter';
-import Toast from '@/app/components/toasts/Toast';
+import AppPlugin from '@/components/layouts/AppPlugin';
+import AppHeader from '@/components/layouts/AppHeader';
+import AppFooter from '@/components/layouts/AppFooter';
+import Toast from '@/components/toasts/Toast';
+import ConfirmModal from '@/components/modals/ConfirmModal';
 
 export const metadata: Metadata = {
   title: "Sample Next App",
@@ -23,6 +24,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         <div className={styles.root}>{children}</div>
         <AppFooter />
         <Toast />
+        <ConfirmModal />
       </body>
     </html>
   );

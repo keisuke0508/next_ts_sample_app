@@ -1,6 +1,6 @@
 import { cartFetchCartProducts } from '@/actions/cart';
 import styles from '@/app/cart/page.module.scss';
-import PageTitle from '@/app/components/texts/PageTitle';
+import PageTitle from '@/components/texts/PageTitle';
 import CartProductItem from '@/app/cart/CartProductItem';
 
 export default async function cartPage() {

@@ -3,9 +3,8 @@
 import { useRouter } from 'next/navigation';
 import styles from '@/app/cart/CartProductForm.module.scss';
 import { cartDeleteCartProduct, cartUpdateCartProduct } from '@/actions/cart';
-import { AppButtonColorType } from '@/types/AppButtonColorType';
-import AppButton from '@/app/components/buttons/AppButton';
-import SelectItemCount from '@/app/components/forms/SelectItemCount';
+import AppButton, { AppButtonColorType } from '@/components/buttons/AppButton';
+import SelectItemCount from '@/components/forms/SelectItemCount';
 
 type Props = {
   id: string;

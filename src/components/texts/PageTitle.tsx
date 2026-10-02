@@ -1,4 +1,4 @@
-import styles from '@/app/components/texts/PageTitle.module.scss'
+import styles from '@/components/texts/PageTitle.module.scss'
 
 type Props = {
   title: string;

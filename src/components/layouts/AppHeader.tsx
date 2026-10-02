@@ -2,10 +2,10 @@
 
 import { useState } from 'react';
 import { User } from '@/models/User';
-import styles from '@/app/components/layouts/AppHeader.module.scss'
-import LinkButton from '@/app/components/buttons/LinkButton';
-import MenuButton from '@/app/components/buttons/MenuButton';
-import GlobalMenu from '@/app/components/layouts/GlobalMenu';
+import styles from '@/components/layouts/AppHeader.module.scss'
+import LinkButton from '@/components/buttons/LinkButton';
+import MenuButton from '@/components/buttons/MenuButton';
+import GlobalMenu from '@/components/layouts/GlobalMenu';
 
 type Props = {
   user: User | null;
@@ -21,7 +21,7 @@ export default function AppHeader({ user}: Props) {
   }
 
   return (
-    <div className={styles.header}>
+    <header className={styles.header}>
       {user ? (
         <p>{user.name}様</p>
       ) : (
@@ -29,6 +29,6 @@ export default function AppHeader({ user}: Props) {
       )}
       <MenuButton onClick={onClickMenuButton} />
       <GlobalMenu appeared={menuAppeared} onClose={onCloseMenu} />
-    </div>
+    </header>
   );
 }

@@ -1,4 +1,4 @@
-import styles from '@/app/components/buttons/MenuButton.module.scss'
+import styles from '@/components/buttons/MenuButton.module.scss'
 
 type Props = {
   onClick: () => void;

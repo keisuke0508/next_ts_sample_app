@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import styles from '@/app/products/[id]/page.module.scss';
 import { productFetchProduct } from '@/actions/product';
-import PageTitle from '@/app/components/texts/PageTitle';
+import PageTitle from '@/components/texts/PageTitle';
 import ProductForm from '@/app/products/[id]/ProductForm';
 
 type Props = {

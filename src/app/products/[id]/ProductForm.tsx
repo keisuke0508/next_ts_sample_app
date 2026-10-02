@@ -2,9 +2,8 @@
 
 import styles from '@/app/products/[id]/ProductForm.module.scss';
 import { useState } from 'react';
-import SelectItemCount from '@/app/components/forms/SelectItemCount';
-import AppButton from '@/app/components/buttons/AppButton';
-import { AppButtonColorType } from '@/types/AppButtonColorType';
+import SelectItemCount from '@/components/forms/SelectItemCount';
+import AppButton, { AppButtonColorType } from '@/components/buttons/AppButton';
 import { cartCreateCartProduct } from '@/actions/cart';
 
 type Props = {

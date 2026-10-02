@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from "react";
-import styles from '@/app/components/forms/TextForm.module.scss'
+import { useState } from 'react';
+import commonStyles from '@/components/forms/Common.module.scss';
+import styles from '@/components/forms/TextForm.module.scss'
 
 type Props = {
   title: string,
@@ -16,8 +17,8 @@ type Props = {
 export default function TextForm({ title, value = '', type = 'text', id, name, errorMessage, onBlur }: Props) {
   const [text, setText] = useState(value);
   return (
-    <div className={styles.root}>
-      <label htmlFor={id} className={styles.label}>{title}</label>
+    <div className={commonStyles.root}>
+      <label htmlFor={id} className={commonStyles.label}>{title}</label>
       <input 
         type={type}
         id={id}
@@ -27,7 +28,7 @@ export default function TextForm({ title, value = '', type = 'text', id, name, e
         onChange={(e) => {setText(e.target.value)}}
         onBlur={onBlur ? (e) => onBlur(e.target.value) : () => {}}
       />
-      {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
+      {errorMessage && <p className={commonStyles.errorMessage}>{errorMessage}</p>}
     </div>
   );
 }

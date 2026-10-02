@@ -1,7 +1,7 @@
 import styles from '@/app/cart/CartProductItem.module.scss';
 import Image from 'next/image';
 import { CartProduct } from '@/models/CartProduct';
-import LinkButton from '@/app/components/buttons/LinkButton';
+import LinkButton from '@/components/buttons/LinkButton';
 import CartProductForm from '@/app/cart/CartProductForm';
 
 type Props = {

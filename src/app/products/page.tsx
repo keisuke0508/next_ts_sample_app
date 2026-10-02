@@ -1,5 +1,5 @@
 import styles from '@/app/products/page.module.scss';
-import PageTitle from '@/app/components/texts/PageTitle';
+import PageTitle from '@/components/texts/PageTitle';
 import ProductItem from '@/app/products/ProductItem';
 import { productFetchProducts } from '@/actions/product';
 

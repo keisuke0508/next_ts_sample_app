@@ -1,4 +1,4 @@
-import PageTitle from '@/app/components/texts/PageTitle';
+import PageTitle from '@/components/texts/PageTitle';
 import SignUpForm from '@/app/auth/signup/SignUpForm';
 
 export default function SignUpPage() {

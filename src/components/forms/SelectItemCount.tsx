@@ -1,6 +1,6 @@
 'use client';
 
-import styles from '@/app/components/forms/SelectItemCount.module.scss'
+import styles from '@/components/forms/SelectItemCount.module.scss'
 
 type Props = {
   value?: number;

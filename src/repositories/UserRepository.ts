@@ -3,7 +3,7 @@ import { Session } from '@/models/Session';
 import { User } from '@/models/User';
 
 export async function findSession(id: string): Promise<Session | null> {
-  return prisma.session.findUnique({
+  return await prisma.session.findUnique({
     where: {
       id,
     }
@@ -18,7 +18,7 @@ export async function createSession(userId: string, expiresAt: Date): Promise<st
 }
 
 export async function deleteSession(userId: string): Promise<void> {
-  prisma.session.deleteMany({
+  await prisma.session.deleteMany({
     where: {
       userId,
     },
@@ -26,7 +26,7 @@ export async function deleteSession(userId: string): Promise<void> {
 }
 
 export async function findUserById(id: string): Promise<User | null> {
-  return prisma.user.findUnique({
+  return await prisma.user.findUnique({
     where: {
       id,
     },
@@ -34,7 +34,7 @@ export async function findUserById(id: string): Promise<User | null> {
 }
 
 export async function findUserByEmail(email: string): Promise<User | null> {
-  return prisma.user.findUnique({
+  return await prisma.user.findUnique({
     where: {
       email,
     }

@@ -1,8 +1,15 @@
 'use client';
 
 import { ButtonHTMLAttributes } from 'react';
-import styles from '@/app/components/buttons/AppButton.module.scss'
-import { AppButtonColorType } from '@/types/AppButtonColorType';
+import styles from '@/components/buttons/AppButton.module.scss'
+
+export enum AppButtonColorType {
+  White = 'white',
+  Gray = 'gray',
+  Blue = 'blue',
+  Red = 'red',
+  Orange = 'orange',
+}
 
 type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
   type?: ButtonHTMLAttributes<HTMLButtonElement>['type'],

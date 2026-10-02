@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import styles from '@/app/auth/signin/page.module.scss';
-import PageTitle from '@/app/components/texts/PageTitle';
+import PageTitle from '@/components/texts/PageTitle';
 import SignInForm from '@/app/auth/signin/SignInForm';
 
 export default function SignInPage() {

@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import styles from '@/app/components/layouts/GlobalMenu.module.scss'
+import styles from '@/components/layouts/GlobalMenu.module.scss'
 
 type Props = {
   appeared: boolean;
@@ -12,6 +12,7 @@ const menuLinkItems = [
   { key: 1, text: 'TOP', href: '/' },
   { key: 2, text: '商品一覧', href: '/products' },
   { key: 3, text: 'カート', href: '/cart' },
+  { key: 4, text: 'お届け先', href: '/user/shippingAddresses' },
 ];
 
 export default function GlobalMenu({ appeared, onClose }: Props) {
@@ -21,8 +22,8 @@ export default function GlobalMenu({ appeared, onClose }: Props) {
     onClose();
   }
   return (
-    <div className={styles.root}>
-      <div className={`${styles.overlay} ${appeared ? styles.appeared : ''}`} />
+    <nav className={styles.root}>
+      <div className={`${styles.overlay} ${appeared ? styles.appeared : ''}`} onClick={onClose} />
       <ul className={`${styles.menu} ${appeared ? styles.appeared : ''}`}>
         {menuLinkItems.map(item => (
           <li key={item.key} className={styles.listItem} onClick={() => onClickMenu(item.href)}>
@@ -30,6 +31,6 @@ export default function GlobalMenu({ appeared, onClose }: Props) {
           </li>
         ))}
       </ul>
-    </div>
+    </nav>
   );
 }

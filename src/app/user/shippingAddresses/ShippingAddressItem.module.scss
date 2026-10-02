@@ -1,0 +1,32 @@
+.root {
+  border: 1px solid $black;
+  border-radius: 8px;
+  padding: 8px 8px;
+  width: 100%;
+  max-width: 960px;
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.shippingAddress {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-grow: 1;
+}
+
+.postalCode {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.address {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.name {
+  font-size: 16px;
+  font-weight: 600;
+}

@@ -1,0 +1,30 @@
+.inputs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.input {
+  height: 32px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid $black;
+  color: $black;
+  padding: 0 8px;
+
+  &:focus {
+    outline: none;
+  }
+
+  &.inputA {
+    width: 46px;
+  }
+
+  &.inputB {
+    width: 56px;
+  }
+
+}

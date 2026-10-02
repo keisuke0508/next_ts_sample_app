@@ -21,6 +21,8 @@ model User {
   password  String
   isDeleted Boolean  @default(false)
   createdAt DateTime @default(now())
+
+  shippingAddresses ShippingAddress[]
 }
 
 model Product {
@@ -48,4 +50,31 @@ model CartProduct {
   product Product @relation(fields: [productId], references: [id])
 
   @@unique([userId, productId])
+
+  @@index([userId])
+}
+
+model ShippingAddress {
+  id           String   @id @default(uuid())
+  userId       String
+  postalCode   String
+  prefectureId Int
+  city         String
+  address      String
+  buildingName String?
+  name         String
+  createdAt    DateTime @default(now())
+  isDeleted    Boolean  @default(false)
+
+  user User @relation(fields: [userId], references: [id])
+  prefecture Prefecture @relation(fields: [prefectureId], references: [id])
+
+  @@index([userId])
+}
+
+model Prefecture {
+  id   Int    @id
+  name String @unique
+
+  shippingAddresses ShippingAddress[]
 }

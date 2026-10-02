@@ -11,7 +11,7 @@ type FindProductParams = {
 };
 
 export async function findProducts({ page, count }: FindProductsParams): Promise<Product[]> {
-  return prisma.product.findMany({
+  return await prisma.product.findMany({
     where: {
       isDeleted: false,
     },
@@ -24,7 +24,7 @@ export async function findProducts({ page, count }: FindProductsParams): Promise
 };
 
 export async function countProducts(): Promise<number> {
-  return prisma.product.count({
+  return await prisma.product.count({
     where: {
       isDeleted: false,
     },
@@ -32,7 +32,7 @@ export async function countProducts(): Promise<number> {
 };
 
 export async function findProduct({ id }: FindProductParams): Promise<Product | null> {
-  return prisma.product.findFirst({
+  return await prisma.product.findFirst({
     where: {
       id,
     },
