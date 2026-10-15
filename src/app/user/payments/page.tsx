@@ -4,7 +4,7 @@ import PageTitle from '@/components/texts/PageTitle';
 import PaymentItem from '@/app/user/payments/PaymentItem';
 import NewPayment from '@/app/user/payments/NewPayment';
 
-export default async function Page() {
+export default async function PaymentPage() {
   const { payments } = await userFetchPayments();
 
   return (
@@ -12,7 +12,7 @@ export default async function Page() {
       <PageTitle title='お支払い方法' />
       <ul className={styles.list}>
         {payments.map(payment => (
-          <li>
+          <li key={payment.id}>
             <PaymentItem payment={payment}></PaymentItem>
           </li>
         ))}

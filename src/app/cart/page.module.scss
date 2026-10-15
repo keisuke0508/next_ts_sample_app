@@ -1,7 +1,57 @@
+.contents {
+  display: flex;
+  gap: 24px;
+}
+
 .list {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 12px;
   width: 960px;
+}
+
+.sideContent {
+  position: sticky;
+  top: 70px;
+  border: 1px solid $black;
+  flex-shrink: 0;
+  border-radius: 8px;
+  padding: 8px 8px;
+  height: fit-content;
+}
+
+.descriptions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; 
+  margin-bottom: 40px;
+}
+
+.descriptionList {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.descriptionTitle {
+  width: 120px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.productCount {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.amountPrice {
+  color: $red;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.buttonWrap {
+  display: flex;
+  justify-content: center;
 }

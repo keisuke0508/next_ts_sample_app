@@ -10,7 +10,9 @@ export async function cartFetchCartProducts(): Promise<CartResponse> {
 
   const userId = res.user.id;
   const cartProducts = await fetchCartProducts({ userId });
-  return { cartProducts };
+  const productCount = cartProducts.map(cartProduct => cartProduct.count).reduce((x, y) => x + y, 0);
+  const amountPrice = cartProducts.map(cartProduct => cartProduct.price).reduce((x, y) => x + y, 0);
+  return { cartProducts, productCount, amountPrice };
 }
 
 export async function cartCreateCartProduct(productId: string, count: number, price: number): Promise<SuccessResponse> {
