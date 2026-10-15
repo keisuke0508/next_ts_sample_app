@@ -1,4 +1,4 @@
-import { FavoriteProduct } from '@/models/FavoriteProduct';
+import { FavoriteProduct } from '@/models';
 
 export type FavoriteProductsResponse = {
   favoriteProducts: FavoriteProduct[];

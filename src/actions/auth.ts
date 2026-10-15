@@ -3,8 +3,7 @@
 import bcrypt from 'bcrypt';
 import { cookies } from 'next/headers';
 import { createSession, deleteSession, createUser, findUserByEmail, findSession, findUserById } from '@/repositories/UserRepository';
-import { SuccessResponse } from '@/responses/SuccessResponse';
-import { UserResponse } from '@/responses/UserResponse';
+import { SuccessResponse, UserResponse } from '@/responses';
 
 const cookieOptions = {
   httpOnly: true,

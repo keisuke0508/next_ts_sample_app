@@ -3,10 +3,9 @@
 import { authFetchCurrentUser } from '@/actions/auth';
 import { createFavoriteProduct, deleteFavoriteProduct, fetchFavoriteProduct, fetchFavoriteProducts } from '@/repositories/FavoriteProductRepository';
 import { createShippingAddress, deleteShippingAddress, findShippingAddresses, updateShippingAddress } from '@/repositories/ShippingAddressRepository';
-import { FavoriteProductsResponse } from '@/responses/FavoriteProductsResponse';
-import { FavoriteProductResponse } from '@/responses/FavoriteProductResponse';
-import { ShippingAddressesResponse } from '@/responses/ShippingAddressesResponse';
-import { SuccessResponse } from '@/responses/SuccessResponse';
+import { FavoriteProductsResponse, FavoriteProductResponse, ShippingAddressesResponse, PaymentsResponse, SuccessResponse } from '@/responses';
+import { createPayment, deletePaymemt, findPayments } from '@/repositories/PaymentRepository';
+import { PaymentType } from '@/types';
 
 export async function userFetchShippingAddresses(): Promise<ShippingAddressesResponse> {
   const res = await authFetchCurrentUser();
@@ -58,6 +57,30 @@ export async function userDeleteShippingAddress(id: string): Promise<SuccessResp
   await deleteShippingAddress({ id });
 
   return { success: true, message: 'お届け先を削除しました。' };
+}
+
+export async function userFetchPayments(): Promise<PaymentsResponse> {
+  const res = await authFetchCurrentUser();
+  if (!res.user) throw new Error('ログインしてください。');
+
+  const payments = await findPayments({ userId: res.user.id });
+  return { payments };
+}
+
+export async function userCreatePayment(paymentType: PaymentType): Promise<SuccessResponse> {
+  const res = await authFetchCurrentUser();
+  if (!res.user) throw new Error('ログインしてください。');
+
+  await createPayment({ paymentType, userId: res.user.id });
+  return { success: true, message: 'お支払い方法を追加しました。' };
+}
+
+export async function userDeletePayment(id: string): Promise<SuccessResponse> {
+  const res = await authFetchCurrentUser();
+  if (!res.user) throw new Error('ログインしてください。');
+
+  await deletePaymemt({ id });
+  return { success: true, message: 'お支払い方法を削除しました。' };
 }
 
 export async function userFetchFavoriteProducts(): Promise<FavoriteProductsResponse> {

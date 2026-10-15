@@ -1,4 +1,4 @@
-import { ShippingAddress } from '@/models/ShippingAddress';
+import { ShippingAddress } from '@/models';
 
 export type ShippingAddressesResponse = {
   shippingAddresses: ShippingAddress[],

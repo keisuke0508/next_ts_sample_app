@@ -1,8 +1,7 @@
 'use server';
 
 import { findProducts, countProducts, findProduct } from '@/repositories/ProductRepository';
-import { ProductResponse } from '@/responses/ProductResponse';
-import { ProductsResponse } from '@/responses/ProductsResponse';
+import { ProductResponse, ProductsResponse } from '@/responses';
 
 export async function productFetchProducts(page: number, count: number): Promise<ProductsResponse> {
   const products = await findProducts({ page, count });

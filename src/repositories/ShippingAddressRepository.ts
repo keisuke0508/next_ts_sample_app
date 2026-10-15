@@ -1,5 +1,5 @@
 import { prisma } from '@/lib/prisma';
-import { ShippingAddress } from '@/models/ShippingAddress';
+import { ShippingAddress } from '@/models';
 
 type FindShippingAddressesParams = {
   userId: string;

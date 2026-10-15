@@ -1,6 +1,6 @@
 import styles from '@/app/cart/CartProductItem.module.scss';
 import Image from 'next/image';
-import { CartProduct } from '@/models/CartProduct';
+import { CartProduct } from '@/models';
 import LinkButton from '@/components/buttons/LinkButton';
 import CartProductForm from '@/app/cart/CartProductForm';
 

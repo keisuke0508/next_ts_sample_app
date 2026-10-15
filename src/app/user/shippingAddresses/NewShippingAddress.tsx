@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from '@/app/user/shippingAddresses/NewShippingAddress.module.scss';
-import { Prefecture } from '@/models/Prefecture';
+import { Prefecture } from '@/models';
 import AppButton, { AppButtonColorType } from '@/components/buttons/AppButton';
 import AppModal from '@/components/modals/AppModal';
 import PostalCodeForm from '@/components/forms/PostalCodeForm';
@@ -96,7 +96,7 @@ export default function NewShippingAddress({ prefectures }: Props) {
         <AppButton text='お届け先の追加' colorType={AppButtonColorType.Blue} onClick={showModal} />
       </div>
       {appeared && (
-        <AppModal title='お届け先の追加' onClick={createShippingAddress}>
+        <AppModal title='お届け先の追加'>
           <form className={styles.form}>
             <PostalCodeForm title='郵便番号' value={postalCode} errorMessage={errorMessageForPostalCode} onBlur={setPostalCode} />
             <SelectForm title='都道府県' items={prefectureItems} errorMessage={errorMessageForPrefectureId} onChange={setPrefectureId} />

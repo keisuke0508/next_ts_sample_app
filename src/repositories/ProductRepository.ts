@@ -1,5 +1,5 @@
 import { prisma } from '@/lib/prisma';
-import { Product } from '@/models/Product';
+import { Product } from '@/models';
 
 type FindProductsParams = {
   page: number;

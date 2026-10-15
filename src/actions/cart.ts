@@ -1,8 +1,7 @@
 'use server';
 
 import { createCartProduct, deleteCartProduct, fetchCartProducts, updateCartProduct } from '@/repositories/CartProductRepository';
-import { CartResponse } from '@/responses/CartResponse';
-import { SuccessResponse } from '@/responses/SuccessResponse';
+import { CartResponse, SuccessResponse } from '@/responses';
 import { authFetchCurrentUser } from '@/actions/auth';
 
 export async function cartFetchCartProducts(): Promise<CartResponse> {

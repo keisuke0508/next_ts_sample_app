@@ -1,5 +1,5 @@
 import styles from '@/app/user/shippingAddresses/ShippingAddressItem.module.scss';
-import { ShippingAddress } from '@/models/ShippingAddress';
+import { ShippingAddress } from '@/models';
 import DeleteShippingAddressButton from '@/app/user/shippingAddresses/DeleteShippingAddressButton';
 
 type Props = {

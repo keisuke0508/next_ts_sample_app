@@ -1,5 +1,4 @@
-import { Product } from '@/models/Product';
-import { Pager } from '@/models/Pager';
+import { Product, Pager } from '@/models';
 
 export type ProductsResponse = {
   products: Product[],

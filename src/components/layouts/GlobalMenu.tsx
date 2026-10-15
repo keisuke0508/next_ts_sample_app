@@ -14,6 +14,7 @@ const menuLinkItems = [
   { key: 3, text: 'カート', href: '/cart' },
   { key: 4, text: 'お気に入り商品', href: '/user/favoriteProducts' },
   { key: 5, text: 'お届け先', href: '/user/shippingAddresses' },
+  { key: 6, text: 'お支払い方法', href: '/user/payments' },
 ];
 
 export default function GlobalMenu({ appeared, onClose }: Props) {

@@ -3,13 +3,11 @@ import { ReactNode } from 'react';
 
 type Props = {
   title?: string;
-  buttonText?: string;
   children?: ReactNode;
-  onClick?: () => void;
   onClose?: () => void;
 };
 
-export default function AppModal({ title, buttonText, children, onClick }: Props) {
+export default function AppModal({ title, children }: Props) {
   return (
     <div className={styles.root}>
       <div className={styles.overlay} />

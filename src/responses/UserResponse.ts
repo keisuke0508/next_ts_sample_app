@@ -1,4 +1,4 @@
-import { User } from '@/models/User';
+import { User } from '@/models';
 
 export type UserResponse = {
   user: User | null;

@@ -1,5 +1,5 @@
 import { prisma } from '@/lib/prisma';
-import { CartProduct } from '@/models/CartProduct';
+import { CartProduct } from '@/models';
 
 type FetchCartProductProps = {
   userId: string;

@@ -1,5 +1,5 @@
 import { prisma } from '@/lib/prisma';
-import { FavoriteProduct } from '@/models/FavoriteProduct';
+import { FavoriteProduct } from '@/models';
 
 type FetchFavoriteProductProps = {
   userId: string;

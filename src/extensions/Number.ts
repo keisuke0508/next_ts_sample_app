@@ -1,9 +1,10 @@
-import { PokemonType } from '@/types/PokemonType';
+import { PaymentType, PokemonType } from '@/types';
 
 declare global {
   interface Number {
     formatPrice(): string;
     pokemonTypeForJapanese(): string;
+    paymentTypeForJapanese(): string;
   }
 }
 
@@ -53,5 +54,26 @@ Number.prototype.pokemonTypeForJapanese = function() {
       return '';
   }
 }
+
+Number.prototype.paymentTypeForJapanese = function() {
+  switch (this.valueOf()) {
+    case PaymentType.Card:
+      return 'クレジットカード';
+    case PaymentType.Paidy:
+      return 'Paidy';
+    case PaymentType.ApplePay:
+      return 'ApplePay';
+    case PaymentType.PayPal:
+      return 'PayPal';
+    case PaymentType.Bank:
+      return '銀行振込'
+    case PaymentType.ConvenienceStore:
+      return 'コンビニ決済';
+    case PaymentType.COD:
+      return '代引き'
+    default:
+      return ''
+  }
+};
 
 export {}

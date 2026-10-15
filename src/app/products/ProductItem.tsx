@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from '@/app/products/ProductItem.module.scss';
-import { Product } from '@/models/Product'
+import { Product } from '@/models'
 
 type Props = {
   product: Product;

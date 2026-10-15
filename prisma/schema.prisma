@@ -22,6 +22,7 @@ model User {
   isDeleted Boolean  @default(false)
   createdAt DateTime @default(now())
 
+  payments Payment[]
   shippingAddresses ShippingAddress[]
 }
 
@@ -69,6 +70,18 @@ model ShippingAddress {
 
   user User @relation(fields: [userId], references: [id])
   prefecture Prefecture @relation(fields: [prefectureId], references: [id])
+
+  @@index([userId])
+}
+
+model Payment {
+  id          String      @id @default(uuid())
+  userId      String
+  paymentType Int
+  createdAt   DateTime    @default(now())
+  isDeleted   Boolean     @default(false)
+
+  user User @relation(fields: [userId], references: [id])
 
   @@index([userId])
 }

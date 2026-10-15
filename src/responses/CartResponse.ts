@@ -1,4 +1,4 @@
-import { CartProduct } from '@/models/CartProduct';
+import { CartProduct } from '@/models';
 
 export type CartResponse = {
   cartProducts: CartProduct[],

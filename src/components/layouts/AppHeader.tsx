@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { User } from '@/models/User';
+import { User } from '@/models';
 import styles from '@/components/layouts/AppHeader.module.scss'
 import LinkButton from '@/components/buttons/LinkButton';
 import MenuButton from '@/components/buttons/MenuButton';

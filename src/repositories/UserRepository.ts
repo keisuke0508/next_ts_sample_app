@@ -1,6 +1,5 @@
 import { prisma } from '@/lib/prisma';
-import { Session } from '@/models/Session';
-import { User } from '@/models/User';
+import { Session, User } from '@/models';
 
 export async function findSession(id: string): Promise<Session | null> {
   return await prisma.session.findUnique({

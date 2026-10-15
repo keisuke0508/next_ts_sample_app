@@ -2,7 +2,7 @@
 
 import { authFetchCurrentUser } from '@/actions/auth';
 import { findPrefectures } from '@/repositories/MasterRepository';
-import { PrefecturesResponse } from '@/responses/PrefecturesResponse';
+import { PrefecturesResponse } from '@/responses';
 
 export async function masterFetchPrefectures(): Promise<PrefecturesResponse> {
   const res = await authFetchCurrentUser();

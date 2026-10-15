@@ -1,6 +1,6 @@
 import styles from '@/app/user/favoriteProducts/FavoriteProductItem.module.scss';
 import Image from 'next/image';
-import { FavoriteProduct } from '@/models/FavoriteProduct';
+import { FavoriteProduct } from '@/models';
 import LinkButton from '@/components/buttons/LinkButton';
 import DeleteFavoriteProductButton from '@/app/user/favoriteProducts/DeleteFavoriteProductButton';
 
