@@ -1,6 +1,7 @@
 import { CartResponse } from './CartResponse';
 import { FavoriteProductResponse } from './FavoriteProductResponse';
 import { FavoriteProductsResponse } from './FavoriteProductsResponse';
+import { OrdersResponse } from './OrdersResponse';
 import { PaymentsResponse } from './PaymentsResponse';
 import { PrefecturesResponse } from './PrefecturesResponse';
 import { ProductResponse } from './ProductResponse';
@@ -13,6 +14,7 @@ export type {
   CartResponse,
   FavoriteProductResponse,
   FavoriteProductsResponse,
+  OrdersResponse,
   PaymentsResponse,
   PrefecturesResponse,
   ProductResponse,

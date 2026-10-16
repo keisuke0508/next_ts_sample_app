@@ -11,7 +11,11 @@ export type Order = Prisma.OrderGetPayload<{
   isRefunded: boolean;
 
   include: {
-    orderProducts: true;
+    orderProducts: {
+      include: {
+        product: true;
+      },
+    };
     shippingAddress: true;
     payment: true;
   };

@@ -3,9 +3,10 @@
 import { authFetchCurrentUser } from '@/actions/auth';
 import { createFavoriteProduct, deleteFavoriteProduct, fetchFavoriteProduct, fetchFavoriteProducts } from '@/repositories/FavoriteProductRepository';
 import { createShippingAddress, deleteShippingAddress, fetchShippingAddresses, selectShippingAddress, updateShippingAddress } from '@/repositories/ShippingAddressRepository';
-import { FavoriteProductsResponse, FavoriteProductResponse, ShippingAddressesResponse, PaymentsResponse, SuccessResponse } from '@/responses';
+import { FavoriteProductsResponse, FavoriteProductResponse, ShippingAddressesResponse, PaymentsResponse, SuccessResponse, OrdersResponse } from '@/responses';
 import { createPayment, deletePaymemt, fetchPayments, selectPayment } from '@/repositories/PaymentRepository';
 import { PaymentType } from '@/types';
+import { fetchOrders } from '@/repositories/OrderRepository';
 
 export async function userFetchShippingAddresses(): Promise<ShippingAddressesResponse> {
   const res = await authFetchCurrentUser();
@@ -132,4 +133,13 @@ export async function userDeleteFavoriteProduct(id: string): Promise<SuccessResp
 
   await deleteFavoriteProduct({ id });
   return { success: true, message: 'お気に入り商品を削除しました。' };
+}
+
+export async function userFetchOrders(): Promise<OrdersResponse> {
+  const res = await authFetchCurrentUser();
+  if (!res.user) throw new Error('ログインしてください。');
+
+  const userId = res.user.id;
+  const orders = await fetchOrders({ userId });
+  return { orders };
 }

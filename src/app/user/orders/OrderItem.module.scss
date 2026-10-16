@@ -1,0 +1,50 @@
+.root {
+  border: 1px solid $black;
+  border-radius: 8px;
+  padding: 8px 8px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.rightContents {
+  align-self: flex-end;
+}
+
+.content {
+  margin-bottom: 12px;
+
+  &.last {
+    margin-bottom: 0;
+  }
+}
+
+.contentTitle {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.contentText {
+  font-size: 16px;
+  font-weight: 500;
+
+  &.amountPrice {
+    color: $red;
+    font-size: 24px;
+    font-weight: 600;
+  }
+}
+
+.orderProducts {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.image {
+  border: 1px solid $black;
+  border-radius: 8px;
+}

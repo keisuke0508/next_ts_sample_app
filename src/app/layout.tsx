@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import './globals.css';
-import '@/extensions/Number'
+import '@/extensions/Number';
+import '@/extensions/Date';
 import { authFetchCurrentUser } from '@/actions/auth'
 import styles from '@/app/layout.module.scss';
 import AppPlugin from '@/components/layouts/AppPlugin';
