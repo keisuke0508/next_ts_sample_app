@@ -16,7 +16,11 @@ export type Order = Prisma.OrderGetPayload<{
         product: true;
       },
     };
-    shippingAddress: true;
+    shippingAddress: {
+      include: {
+        prefecture: true;
+      },
+    };
     payment: true;
   };
 }>;

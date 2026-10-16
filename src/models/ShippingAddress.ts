@@ -1,4 +1,6 @@
-export type ShippingAddress = {
+import { Prisma } from '@/generated/prisma/client';
+
+export type ShippingAddress = Prisma.ShippingAddressGetPayload<{
   id: string;
   userId: string;
   postalCode: string;
@@ -10,4 +12,8 @@ export type ShippingAddress = {
   isSelected: boolean;
   isDeleted: boolean;
   createdAt: Date;
-};
+
+  include: {
+    prefecture: true;
+  };
+}>;

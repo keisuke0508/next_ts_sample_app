@@ -3,10 +3,10 @@
 import { authFetchCurrentUser } from '@/actions/auth';
 import { createFavoriteProduct, deleteFavoriteProduct, fetchFavoriteProduct, fetchFavoriteProducts } from '@/repositories/FavoriteProductRepository';
 import { createShippingAddress, deleteShippingAddress, fetchShippingAddresses, selectShippingAddress, updateShippingAddress } from '@/repositories/ShippingAddressRepository';
-import { FavoriteProductsResponse, FavoriteProductResponse, ShippingAddressesResponse, PaymentsResponse, SuccessResponse, OrdersResponse } from '@/responses';
+import { FavoriteProductsResponse, FavoriteProductResponse, ShippingAddressesResponse, PaymentsResponse, SuccessResponse, OrdersResponse, OrderResponse } from '@/responses';
 import { createPayment, deletePaymemt, fetchPayments, selectPayment } from '@/repositories/PaymentRepository';
 import { PaymentType } from '@/types';
-import { fetchOrders } from '@/repositories/OrderRepository';
+import { fetchOrder, fetchOrders } from '@/repositories/OrderRepository';
 
 export async function userFetchShippingAddresses(): Promise<ShippingAddressesResponse> {
   const res = await authFetchCurrentUser();
@@ -142,4 +142,13 @@ export async function userFetchOrders(): Promise<OrdersResponse> {
   const userId = res.user.id;
   const orders = await fetchOrders({ userId });
   return { orders };
+}
+
+export async function userFetchOrder(id: string): Promise<OrderResponse> {
+  const res = await authFetchCurrentUser();
+  if (!res.user) throw new Error('ログインしてください。');
+
+  const order = await fetchOrder({ id });
+  if (order == null) throw new Error('ご注文が見つかりませんでした。');
+  return { order };
 }

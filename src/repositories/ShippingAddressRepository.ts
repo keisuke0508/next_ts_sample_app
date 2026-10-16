@@ -47,6 +47,9 @@ export async function fetchShippingAddresses({ userId }: FetchShippingAddressesP
     orderBy: {
       isSelected: 'desc',
     },
+    include: {
+      prefecture: true,
+    },
   });
 }
 
@@ -56,6 +59,9 @@ export async function fetchSelectedShippingAddress({ userId }: FetchSelectedShip
       userId,
       isDeleted: false,
       isSelected: true,
+    },
+    include: {
+      prefecture: true,
     },
   });
 }

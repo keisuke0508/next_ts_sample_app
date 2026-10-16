@@ -12,7 +12,7 @@ export default function ShippingAddressItem({ shippingAddress, hideUI = false }:
     <div className={`${styles.root} ${shippingAddress.isSelected ? styles.selected : ''}`}>
       <div className={styles.shippingAddress}>
         <p className={styles.postalCode}>〒{shippingAddress.postalCode}</p>
-        <p className={styles.address}>{shippingAddress.city}{shippingAddress.address} {shippingAddress.buildingName}</p>
+        <p className={styles.address}>{shippingAddress.prefecture.name}{shippingAddress.city}{shippingAddress.address} {shippingAddress.buildingName}</p>
         <p className={styles.name}>{shippingAddress.name}</p>
       </div>
       <ShippingAddressButtons id={shippingAddress.id} hideUI={hideUI} />

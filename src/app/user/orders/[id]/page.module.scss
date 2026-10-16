@@ -1,0 +1,28 @@
+.orderProducts {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 960px;
+}
+
+.content {
+  margin-bottom: 40px;
+}
+
+.contentTitle {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.contentText {
+  font-size: 16px;
+  font-weight: 500;
+
+  &.amountPrice {
+    color: $red;
+    font-size: 24px;
+    font-weight: 600;
+  }
+}

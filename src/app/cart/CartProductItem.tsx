@@ -1,11 +1,11 @@
 import styles from '@/app/cart/CartProductItem.module.scss';
 import Image from 'next/image';
-import { CartProduct } from '@/models';
+import { CartProduct, OrderProduct } from '@/models';
 import LinkButton from '@/components/buttons/LinkButton';
 import CartProductForm from '@/app/cart/CartProductForm';
 
 type Props = {
-  cartProduct: CartProduct;
+  cartProduct: CartProduct | OrderProduct;
   hideUI?: boolean;
 }
 

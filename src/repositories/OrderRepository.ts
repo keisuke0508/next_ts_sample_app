@@ -5,6 +5,10 @@ type FetchOrdersParams = {
   userId: string;
 };
 
+type FetchOrderParams = {
+  id: string;
+};
+
 type CreateOrderParams = {
   userId: string;
   shippingAddressId: string;
@@ -24,7 +28,32 @@ export async function fetchOrders({ userId }: FetchOrdersParams): Promise<Order[
           product: true,
         }
       },
-      shippingAddress: true,
+      shippingAddress: {
+        include: {
+          prefecture: true,
+        }
+      },
+      payment: true,
+    },
+  });
+}
+
+export async function fetchOrder({ id }: FetchOrderParams): Promise<Order | null> {
+  return await prisma.order.findFirst({
+    where: {
+      id,
+    },
+    include: {
+      orderProducts: {
+        include: {
+          product: true,
+        },
+      },
+      shippingAddress: {
+        include: {
+          prefecture: true,
+        }
+      },
       payment: true,
     },
   });

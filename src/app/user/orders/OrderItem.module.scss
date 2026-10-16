@@ -5,6 +5,13 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  position: relative;
+}
+
+.buttonWrap {
+  position: absolute;
+  top: 8px;
+  right: 8px;
 }
 
 .rightContents {
@@ -16,6 +23,10 @@
 
   &.last {
     margin-bottom: 0;
+  }
+
+  &.marginTopAuto {
+    margin-top: auto;
   }
 }
 

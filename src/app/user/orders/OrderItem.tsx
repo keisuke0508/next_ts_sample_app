@@ -1,6 +1,7 @@
 import styles from '@/app/user/orders/OrderItem.module.scss';
 import Image from 'next/image';
 import { Order } from '@/models';
+import ToOrderButton from '@/app/user/orders/ToOrderButton';
 
 type Props = {
   order: Order;  
@@ -11,6 +12,9 @@ export default function OrderItem({ order }: Props) {
 
   return (
     <div className={styles.root}>
+      <div className={styles.buttonWrap}>
+        <ToOrderButton id={order.id} />
+      </div>
       <div>
         <div className={styles.content}>
           <h6 className={styles.contentTitle}>ご注文日時</h6>
@@ -28,8 +32,8 @@ export default function OrderItem({ order }: Props) {
         </div>
         <div className={styles.content}>
           <h6 className={styles.contentTitle}>お届け先</h6>
-          <p className={styles.contentText}>{order.shippingAddress.postalCode}</p>
-          <p className={styles.contentText}>{order.shippingAddress.city}{order.shippingAddress.address}{order.shippingAddress.buildingName}</p>
+          <p className={styles.contentText}>〒{order.shippingAddress.postalCode}</p>
+          <p className={styles.contentText}>{order.shippingAddress.prefecture.name}{order.shippingAddress.city}{order.shippingAddress.address}{order.shippingAddress.buildingName}</p>
           <p className={styles.contentText}>{order.shippingAddress.name}</p>
         </div>
         <div className={`${styles.content} ${styles.last}`}>
