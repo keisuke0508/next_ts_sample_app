@@ -24,6 +24,7 @@ model User {
 
   payments Payment[]
   shippingAddresses ShippingAddress[]
+  orders Order[]
 }
 
 model Product {
@@ -38,6 +39,7 @@ model Product {
   createdAt   DateTime @default(now())
 
   cartProducts CartProduct[]
+  orderProducts OrderProduct[]
   favoriteProducts FavoriteProduct[]
 }
 
@@ -45,7 +47,7 @@ model CartProduct {
   id        String   @id @default(uuid())
   userId    String
   productId String
-  count     Int
+  quantity  Int
   price     Int
   createdAt DateTime @default(now())
 
@@ -54,6 +56,35 @@ model CartProduct {
   @@unique([userId, productId])
 
   @@index([userId])
+}
+
+model Order {
+  id           String         @id @default(uuid())
+  userId       String
+  shippingAddressId String
+  paymentId         String
+  totalQuantity Int
+  amountPrice  Int
+  createdAt    DateTime       @default(now())
+  isRefunded   Boolean        @default(false)
+
+  user  User           @relation(fields: [userId], references: [id])
+  orderProducts OrderProduct[]
+  shippingAddress ShippingAddress @relation(fields: [shippingAddressId], references: [id])
+  payment          Payment          @relation(fields: [paymentId], references: [id])
+}
+
+model OrderProduct {
+  id        String  @id @default(uuid())
+  orderId   String
+  productId String
+  quantity  Int
+  price     Int
+
+  order   Order   @relation(fields: [orderId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+
+  @@unique([orderId, productId])
 }
 
 model ShippingAddress {
@@ -65,11 +96,13 @@ model ShippingAddress {
   address      String
   buildingName String?
   name         String
+  isSelected     Boolean  @default(false)
   createdAt    DateTime @default(now())
   isDeleted    Boolean  @default(false)
 
   user User @relation(fields: [userId], references: [id])
   prefecture Prefecture @relation(fields: [prefectureId], references: [id])
+  orders Order[]
 
   @@index([userId])
 }
@@ -78,10 +111,12 @@ model Payment {
   id          String      @id @default(uuid())
   userId      String
   paymentType Int
+  isSelected    Boolean     @default(false)
   createdAt   DateTime    @default(now())
   isDeleted   Boolean     @default(false)
 
   user User @relation(fields: [userId], references: [id])
+  orders Order[]
 
   @@index([userId])
 }

@@ -2,7 +2,7 @@
 
 import styles from '@/app/products/[id]/ProductForm.module.scss';
 import { useState } from 'react';
-import SelectItemCount from '@/components/forms/SelectItemCount';
+import SelectItemQuantity from '@/components/forms/SelectItemQuantity';
 import AppButton, { AppButtonColorType } from '@/components/buttons/AppButton';
 import { cartCreateCartProduct } from '@/actions/cart';
 
@@ -12,10 +12,10 @@ type Props = {
 }
 
 export default function ProductForm({ productId, price }: Props) {
-  const [count, setCount] = useState(1);
+  const [quantity, setQuantity] = useState(1);
   const addToCart = async () => {
     try {
-      const { message } = await cartCreateCartProduct(productId, count, price);
+      const { message } = await cartCreateCartProduct(productId, quantity, price);
       $toast.success(message);
     } catch (e) {
       if (e instanceof Error) {
@@ -26,7 +26,7 @@ export default function ProductForm({ productId, price }: Props) {
 
   return (
     <div className={styles.root}>
-      <SelectItemCount onChange={setCount} />
+      <SelectItemQuantity onChange={setQuantity} />
       <AppButton text='カートに追加する' colorType={AppButtonColorType.Blue} onClick={addToCart} />
     </div>
   );

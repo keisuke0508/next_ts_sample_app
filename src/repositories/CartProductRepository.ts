@@ -1,27 +1,31 @@
 import { prisma } from '@/lib/prisma';
 import { CartProduct } from '@/models';
 
-type FetchCartProductProps = {
+type FetchCartProductParams = {
   userId: string;
-}
+};
 
-type CreateCartProductProps = {
+type CreateCartProductParams = {
   productId: string;
   userId: string;
-  count: number;
+  quantity: number;
   price: number;
-}
+};
 
-type UpdateCartProductProps = {
+type UpdateCartProductParams = {
   id: string;
-  count?: number;
-}
+  quantity?: number;
+};
 
-type DeleteCartProductProps = {
+type DeleteCartProductParams = {
   id: string;
-}
+};
 
-export async function fetchCartProducts({ userId }: FetchCartProductProps): Promise<CartProduct[]> {
+type ResetCartProductsParams = {
+  userId: string;
+};
+
+export async function fetchCartProducts({ userId }: FetchCartProductParams): Promise<CartProduct[]> {
   return await prisma.cartProduct.findMany({
     where: {
       userId,
@@ -32,36 +36,42 @@ export async function fetchCartProducts({ userId }: FetchCartProductProps): Prom
   })
 }
 
-export async function createCartProduct({ userId, productId, count, price }: CreateCartProductProps): Promise<void> {
+export async function createCartProduct({ userId, productId, quantity, price }: CreateCartProductParams): Promise<void> {
   await prisma.cartProduct.upsert({
     where: {
       userId_productId: {
         userId, productId,
       },
     },
-    create: { userId, productId, count, price },
+    create: { userId, productId, quantity, price },
     update: {
-      count: {
-        increment: count,
+      quantity: {
+        increment: quantity,
       },
       price,
     }
   });
 }
 
-export async function updateCartProduct({ id, count }: UpdateCartProductProps): Promise<void> {
+export async function updateCartProduct({ id, quantity }: UpdateCartProductParams): Promise<void> {
   await prisma.cartProduct.update({
     where: {
       id,
     },
     data: {
-      ...(count != null ? { count } : {}),
+      ...(quantity != null ? { quantity } : {}),
     },
   })
 }
 
-export async function deleteCartProduct({ id }: DeleteCartProductProps): Promise<void> {
+export async function deleteCartProduct({ id }: DeleteCartProductParams): Promise<void> {
   await prisma.cartProduct.delete({
     where: { id },
+  });
+}
+
+export async function resetCartProducts({ userId }: ResetCartProductsParams) {
+  await prisma.cartProduct.deleteMany({
+    where: { userId },
   });
 }

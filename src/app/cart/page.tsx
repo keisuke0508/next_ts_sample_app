@@ -5,35 +5,41 @@ import CartProductItem from '@/app/cart/CartProductItem';
 import ToOrderButton from './ToOrderButton';
 
 export default async function cartPage() {
-  const { cartProducts, productCount, amountPrice } = await cartFetchCartProducts();
+  const { cartProducts, totalQuantity, amountPrice } = await cartFetchCartProducts();
 
   return (
     <div>
       <PageTitle title="カート" />
-      <div className={styles.contents}>
-        <ul className={styles.list}>
-          {cartProducts.map(cartProduct => (
-            <li key={cartProduct.id} className={styles.listItem}>
-              <CartProductItem cartProduct={cartProduct} />
-            </li>
-          ))}
-        </ul>
-        <div className={styles.sideContent}>
-          <div className={styles.descriptions}>
-            <dl className={styles.descriptionList}>
-              <dt className={styles.descriptionTitle}>商品数</dt>
-              <dd className={styles.productCount}>{productCount}</dd>
-            </dl>
-            <dl className={styles.descriptionList}>
-              <dt className={styles.descriptionTitle}>合計金額</dt>
-              <dd className={styles.amountPrice}>{amountPrice.formatPrice()}</dd>
-            </dl>
-          </div>
-          <div className={styles.buttonWrap}>
-            <ToOrderButton />
+      {cartProducts.length === 0 && (
+        <p className={styles.noCartProduct}>カートに商品がありません。</p>
+      )}
+      {cartProducts.length > 0 && (
+        <div className={styles.contents}>
+          <ul className={styles.list}>
+            {cartProducts.map(cartProduct => (
+              <li key={cartProduct.id} className={styles.listItem}>
+                <CartProductItem cartProduct={cartProduct} />
+              </li>
+            ))}
+          </ul>
+          
+          <div className={styles.sideContent}>
+            <div className={styles.descriptions}>
+              <dl className={styles.descriptionList}>
+                <dt className={styles.descriptionTitle}>商品数</dt>
+                <dd className={styles.totalQuantity}>{totalQuantity}</dd>
+              </dl>
+              <dl className={styles.descriptionList}>
+                <dt className={styles.descriptionTitle}>合計金額</dt>
+                <dd className={styles.amountPrice}>{amountPrice.formatPrice()}</dd>
+              </dl>
+            </div>
+            <div className={styles.buttonWrap}>
+              <ToOrderButton />
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   )
 }

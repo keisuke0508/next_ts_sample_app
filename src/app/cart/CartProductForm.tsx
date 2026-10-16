@@ -4,18 +4,18 @@ import { useRouter } from 'next/navigation';
 import styles from '@/app/cart/CartProductForm.module.scss';
 import { cartDeleteCartProduct, cartUpdateCartProduct } from '@/actions/cart';
 import AppButton, { AppButtonColorType } from '@/components/buttons/AppButton';
-import SelectItemCount from '@/components/forms/SelectItemCount';
+import SelectItemQuantity from '@/components/forms/SelectItemQuantity';
 
 type Props = {
   id: string;
-  count: number;
+  quantity: number;
 }
 
-export default function CartProductForm({ id, count }: Props) {
+export default function CartProductForm({ id, quantity }: Props) {
   const router = useRouter();
-  const updateCartProductCount = async (newCount: number) => {
+  const updateCartProductQuantity = async (newQuantity: number) => {
     try {
-      const { message } = await cartUpdateCartProduct(id, newCount);
+      const { message } = await cartUpdateCartProduct(id, newQuantity);
       $toast.success(message);
     } catch (e) {
       if (e instanceof Error) {
@@ -37,7 +37,7 @@ export default function CartProductForm({ id, count }: Props) {
 
   return (
     <div className={styles.root}>
-      <SelectItemCount value={count} onChange={updateCartProductCount} />
+      <SelectItemQuantity value={quantity} onChange={updateCartProductQuantity} />
       <AppButton text='削除' colorType={AppButtonColorType.Red} onClick={deleteCartProduct} />
     </div>
   );

@@ -1,25 +1,25 @@
 import { prisma } from '@/lib/prisma';
 import { FavoriteProduct } from '@/models';
 
-type FetchFavoriteProductProps = {
+type FetchFavoriteProductParams = {
   userId: string;
 };
 
-type ExistsFavoriteProductProps = {
-  userId: string;
-  productId: string;
-};
-
-type CreateFavoriteProductProps = {
+type ExistsFavoriteProductParams = {
   userId: string;
   productId: string;
 };
 
-type DeleteFavoriteProductProps = {
+type CreateFavoriteProductParams = {
+  userId: string;
+  productId: string;
+};
+
+type DeleteFavoriteProductParams = {
   id: string;
 };
 
-export async function fetchFavoriteProducts({ userId }: FetchFavoriteProductProps): Promise<FavoriteProduct[]> {
+export async function fetchFavoriteProducts({ userId }: FetchFavoriteProductParams): Promise<FavoriteProduct[]> {
   return await prisma.favoriteProduct.findMany({
     where: {
       userId,
@@ -30,7 +30,7 @@ export async function fetchFavoriteProducts({ userId }: FetchFavoriteProductProp
   });
 }
 
-export async function fetchFavoriteProduct({ userId, productId }: ExistsFavoriteProductProps): Promise<FavoriteProduct | null> {
+export async function fetchFavoriteProduct({ userId, productId }: ExistsFavoriteProductParams): Promise<FavoriteProduct | null> {
   return await prisma.favoriteProduct.findUnique({
     where: {
       userId_productId: {
@@ -43,7 +43,7 @@ export async function fetchFavoriteProduct({ userId, productId }: ExistsFavorite
   });
 }
 
-export async function createFavoriteProduct({ userId, productId }: CreateFavoriteProductProps): Promise<void> {
+export async function createFavoriteProduct({ userId, productId }: CreateFavoriteProductParams): Promise<void> {
   await prisma.favoriteProduct.create({
     data: {
       userId, productId,
@@ -51,7 +51,7 @@ export async function createFavoriteProduct({ userId, productId }: CreateFavorit
   });
 }
 
-export async function deleteFavoriteProduct({ id }: DeleteFavoriteProductProps): Promise<void> {
+export async function deleteFavoriteProduct({ id }: DeleteFavoriteProductParams): Promise<void> {
   await prisma.favoriteProduct.delete({
     where: {
       id,

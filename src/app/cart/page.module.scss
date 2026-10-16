@@ -3,6 +3,14 @@
   gap: 24px;
 }
 
+.noCartProduct {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 40px 0;
+  text-align: center;
+  width: 100%;
+}
+
 .list {
   list-style: none;
   display: flex;
@@ -40,7 +48,7 @@
   font-weight: 600;
 }
 
-.productCount {
+.totalQuantity {
   font-size: 20px;
   font-weight: 600;
 }

@@ -1,0 +1,18 @@
+import { Prisma } from '@/generated/prisma/client';
+
+export type Order = Prisma.OrderGetPayload<{
+  id: string;
+  userId: string;
+  shippingAddressId: string;
+  paymentId: string;
+  totalQuantity: number;
+  amountPrice: number;
+  createdAt: boolean;
+  isRefunded: boolean;
+
+  include: {
+    orderProducts: true;
+    shippingAddress: true;
+    payment: true;
+  };
+}>;

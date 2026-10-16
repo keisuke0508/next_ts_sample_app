@@ -4,7 +4,7 @@ export type CartProduct = Prisma.CartProductGetPayload<{
   id: string;
   userId: string;
   productId: string;
-  count: number;
+  quantity: number;
   price: number;
   createdAt: Date;
 

@@ -2,9 +2,9 @@
 
 import { authFetchCurrentUser } from '@/actions/auth';
 import { createFavoriteProduct, deleteFavoriteProduct, fetchFavoriteProduct, fetchFavoriteProducts } from '@/repositories/FavoriteProductRepository';
-import { createShippingAddress, deleteShippingAddress, findShippingAddresses, updateShippingAddress } from '@/repositories/ShippingAddressRepository';
+import { createShippingAddress, deleteShippingAddress, fetchShippingAddresses, selectShippingAddress, updateShippingAddress } from '@/repositories/ShippingAddressRepository';
 import { FavoriteProductsResponse, FavoriteProductResponse, ShippingAddressesResponse, PaymentsResponse, SuccessResponse } from '@/responses';
-import { createPayment, deletePaymemt, findPayments } from '@/repositories/PaymentRepository';
+import { createPayment, deletePaymemt, fetchPayments, selectPayment } from '@/repositories/PaymentRepository';
 import { PaymentType } from '@/types';
 
 export async function userFetchShippingAddresses(): Promise<ShippingAddressesResponse> {
@@ -12,7 +12,7 @@ export async function userFetchShippingAddresses(): Promise<ShippingAddressesRes
   if (!res.user) throw new Error('ログインしてください。');
 
   const userId = res.user.id;
-  const shippingAddresses = await findShippingAddresses({ userId });
+  const shippingAddresses = await fetchShippingAddresses({ userId });
   return { shippingAddresses };
 }
 
@@ -50,6 +50,14 @@ export async function userUpdateShippingAddress(
   return { success: true, message: 'お届け先を変更しました。' };
 }
 
+export async function userSelectShippingAddress(id: string): Promise<SuccessResponse> {
+  const res = await authFetchCurrentUser();
+  if (!res.user) throw new Error('ログインしてください。');
+
+  await selectShippingAddress({ id, userId: res.user.id });
+  return { success: true, message: 'お届け先を選択しました。' };
+}
+
 export async function userDeleteShippingAddress(id: string): Promise<SuccessResponse> {
   const res = await authFetchCurrentUser();
   if (!res.user) throw new Error('ログインしてください。');
@@ -63,7 +71,7 @@ export async function userFetchPayments(): Promise<PaymentsResponse> {
   const res = await authFetchCurrentUser();
   if (!res.user) throw new Error('ログインしてください。');
 
-  const payments = await findPayments({ userId: res.user.id });
+  const payments = await fetchPayments({ userId: res.user.id });
   return { payments };
 }
 
@@ -73,6 +81,14 @@ export async function userCreatePayment(paymentType: PaymentType): Promise<Succe
 
   await createPayment({ paymentType, userId: res.user.id });
   return { success: true, message: 'お支払い方法を追加しました。' };
+}
+
+export async function userSelectPayment(id: string): Promise<SuccessResponse> {
+  const res = await authFetchCurrentUser();
+  if (!res.user) throw new Error('ログインしてください。');
+
+  await selectPayment({ id, userId: res.user.id });
+  return { success: true, message: 'お支払い方法を選択しました。' };
 }
 
 export async function userDeletePayment(id: string): Promise<SuccessResponse> {

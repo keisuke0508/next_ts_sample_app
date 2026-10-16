@@ -1,7 +1,11 @@
 import { prisma } from '@/lib/prisma';
 import { ShippingAddress } from '@/models';
 
-type FindShippingAddressesParams = {
+type FetchShippingAddressesParams = {
+  userId: string;
+};
+
+type FetchSelectedShippingAddressParams = {
   userId: string;
 };
 
@@ -25,15 +29,33 @@ type UpdateShippingAddressParams = {
   name: string;
 };
 
+type SelectShippingAddressParams = {
+  id: string;
+  userId: string;
+};
+
 type DeleteShippingAddressParams = {
   id: string;
 };
 
-export async function findShippingAddresses({ userId }: FindShippingAddressesParams): Promise<ShippingAddress[]> {
+export async function fetchShippingAddresses({ userId }: FetchShippingAddressesParams): Promise<ShippingAddress[]> {
   return await prisma.shippingAddress.findMany({
     where: {
       userId,
       isDeleted: false,
+    },
+    orderBy: {
+      isSelected: 'desc',
+    },
+  });
+}
+
+export async function fetchSelectedShippingAddress({ userId }: FetchSelectedShippingAddressParams): Promise<ShippingAddress | null> {
+  return await prisma.shippingAddress.findFirst({
+    where: {
+      userId,
+      isDeleted: false,
+      isSelected: true,
     },
   });
 }
@@ -57,10 +79,33 @@ export async function updateShippingAddress({ id, postalCode, prefectureId, city
   });
 }
 
-export async function deleteShippingAddress({ id }: DeleteShippingAddressParams): Promise<void> {
-  await prisma.shippingAddress.delete({
+export async function selectShippingAddress({ id, userId }: SelectShippingAddressParams): Promise<void> {
+  await prisma.shippingAddress.updateMany({
+    where: {
+      userId,
+    },
+    data: {
+      isSelected: false,
+    },
+  });
+
+  await prisma.shippingAddress.update({
     where: {
       id,
+    },
+    data: {
+      isSelected: true,
+    },
+  });
+}
+
+export async function deleteShippingAddress({ id }: DeleteShippingAddressParams): Promise<void> {
+  await prisma.shippingAddress.update({
+    where: {
+      id,
+    },
+    data: {
+      isDeleted: true,
     },
   });
 }

@@ -6,9 +6,10 @@ import CartProductForm from '@/app/cart/CartProductForm';
 
 type Props = {
   cartProduct: CartProduct;
+  hideUI?: boolean;
 }
 
-export default function CartProductItem({ cartProduct }: Props) {
+export default function CartProductItem({ cartProduct, hideUI = false }: Props) {
   return (
     <div className={styles.root}>
       <Image src={cartProduct.product.imageUrl} alt={cartProduct.product.name} width={140} height={140} className={styles.image} />
@@ -16,10 +17,12 @@ export default function CartProductItem({ cartProduct }: Props) {
         <h2 className={styles.productName}>{cartProduct.product.name}</h2>
         <p className={styles.price}>{cartProduct.price.formatPrice()}</p>
       </div>
-      <div className={styles.formWrap}>
-        <LinkButton text='商品ページへ' href={`/products/${cartProduct.productId}`} />
-        <CartProductForm id={cartProduct.id} count={cartProduct.count} />
-      </div>
+      {!hideUI && (
+        <div className={styles.formWrap}>
+          <LinkButton text='商品ページへ' href={`/products/${cartProduct.productId}`} />
+          <CartProductForm id={cartProduct.id} quantity={cartProduct.quantity} />
+        </div>
+      )}
     </div>
   );
 }

@@ -7,6 +7,7 @@ export type ShippingAddress = {
   address: string;
   buildingName: string | null;
   name: string;
+  isSelected: boolean;
   isDeleted: boolean;
   createdAt: Date;
 };
